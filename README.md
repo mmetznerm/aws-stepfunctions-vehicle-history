@@ -335,7 +335,7 @@ Failed
 
 Evidência da execução:
 
-![Erro de veículo não encontrado](docs/images/05-error-vehicle-not-found.png)
+![Erro de veículo não encontrado](docs/images/error-vehicle-not-found.png)
 
 ---
 
