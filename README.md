@@ -104,7 +104,7 @@ flowchart TD
 
 ## Visual do workflow na AWS
 
-![Workflow visual](docs/images/01-workflow-visual.png)
+![Workflow visual](docs/images/workflow-visual.png)
 
 ---
 
@@ -220,7 +220,7 @@ Succeeded
 
 Evidência da execução:
 
-![Execução com manutenção vencida](docs/images/02-success-maintenance-alert.png)
+![Execução com manutenção vencida](docs/images/success-maintenance-alert.png)
 
 ---
 
@@ -264,7 +264,7 @@ Succeeded
 
 Evidência da execução:
 
-![Execução sem alerta de manutenção](docs/images/03-success-without-alert.png)
+![Execução sem alerta de manutenção](docs/images/success-without-alert.png)
 
 ---
 
@@ -299,7 +299,7 @@ Failed
 
 Evidência da execução:
 
-![Erro de placa inválida](docs/images/04-error-invalid-plate.png)
+![Erro de placa inválida](docs/images/error-invalid-plate.png)
 
 ---
 
