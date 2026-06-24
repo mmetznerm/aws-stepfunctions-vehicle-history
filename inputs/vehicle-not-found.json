@@ -1,0 +1,7 @@
+{
+  "plate": "AAA1B22",
+  "vehicleExists": false,
+  "maintenance": {
+    "overdue": false
+  }
+}

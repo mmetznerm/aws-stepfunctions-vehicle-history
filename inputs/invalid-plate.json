@@ -1,0 +1,6 @@
+{
+  "vehicleExists": true,
+  "maintenance": {
+    "overdue": false
+  }
+}

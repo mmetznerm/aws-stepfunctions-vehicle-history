@@ -1,0 +1,15 @@
+{
+  "plate": "ABC1D23",
+  "vehicleExists": true,
+  "vehicle": {
+    "brand": "Honda",
+    "model": "Civic",
+    "year": 2020,
+    "currentMileage": 42000
+  },
+  "maintenance": {
+    "lastMileage": 40000,
+    "nextMileage": 50000,
+    "overdue": false
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "plate": "XYZ9A88",
+  "vehicleExists": true,
+  "vehicle": {
+    "brand": "Toyota",
+    "model": "Corolla",
+    "year": 2018,
+    "currentMileage": 85000
+  },
+  "maintenance": {
+    "lastMileage": 70000,
+    "nextMileage": 80000,
+    "overdue": true
+  }
+}

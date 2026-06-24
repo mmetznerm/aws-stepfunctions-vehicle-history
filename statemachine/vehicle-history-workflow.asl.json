@@ -1,0 +1,102 @@
+{
+  "Comment": "Fluxo simples em AWS Step Functions para consulta de histórico de veículo e alerta de manutenção.",
+  "StartAt": "ReceberConsulta",
+  "States": {
+    "ReceberConsulta": {
+      "Type": "Pass",
+      "Result": {
+        "etapa": "Consulta recebida",
+        "mensagem": "Iniciando validação da placa e dados do veículo"
+      },
+      "ResultPath": "$.workflow",
+      "Next": "ValidarPlaca"
+    },
+    "ValidarPlaca": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.plate",
+          "IsPresent": true,
+          "Next": "ConsultarVeiculo"
+        }
+      ],
+      "Default": "PlacaInvalida"
+    },
+    "ConsultarVeiculo": {
+      "Type": "Pass",
+      "Result": {
+        "etapa": "Veículo consultado",
+        "mensagem": "Simulação de consulta ao cadastro do veículo"
+      },
+      "ResultPath": "$.vehicleQuery",
+      "Next": "VeiculoEncontrado"
+    },
+    "VeiculoEncontrado": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.vehicleExists",
+          "BooleanEquals": true,
+          "Next": "VerificarManutencao"
+        }
+      ],
+      "Default": "VeiculoNaoEncontrado"
+    },
+    "VerificarManutencao": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.maintenance.overdue",
+          "BooleanEquals": true,
+          "Next": "GerarAlertaManutencao"
+        }
+      ],
+      "Default": "GerarHistoricoVeiculo"
+    },
+    "GerarAlertaManutencao": {
+      "Type": "Pass",
+      "Result": {
+        "etapa": "Alerta gerado",
+        "mensagem": "O veículo possui manutenção vencida ou próxima do vencimento"
+      },
+      "ResultPath": "$.maintenanceAlert",
+      "Next": "AguardarProcessamentoAlerta"
+    },
+    "AguardarProcessamentoAlerta": {
+      "Type": "Wait",
+      "Seconds": 5,
+      "Next": "GerarRecomendacao"
+    },
+    "GerarRecomendacao": {
+      "Type": "Pass",
+      "Result": {
+        "etapa": "Recomendação gerada",
+        "mensagem": "Recomenda-se agendar revisão preventiva para o veículo"
+      },
+      "ResultPath": "$.recommendation",
+      "Next": "GerarHistoricoVeiculo"
+    },
+    "GerarHistoricoVeiculo": {
+      "Type": "Pass",
+      "Result": {
+        "etapa": "Histórico gerado",
+        "mensagem": "Histórico do veículo preparado para exibição no aplicativo"
+      },
+      "ResultPath": "$.historyReport",
+      "Next": "FinalizarConsulta"
+    },
+    "FinalizarConsulta": {
+      "Type": "Succeed"
+    },
+    "PlacaInvalida": {
+      "Type": "Fail",
+      "Error": "InvalidPlate",
+      "Cause": "A placa do veículo não foi informada na entrada da execução."
+    },
+    "VeiculoNaoEncontrado": {
+      "Type": "Fail",
+      "Error": "VehicleNotFound",
+      "Cause": "Nenhum veículo foi encontrado para a placa informada."
+    }
+  }
+}
